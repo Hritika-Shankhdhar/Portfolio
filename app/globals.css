@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+:root {
+  --yellow: #ffcb1f;
+  --yellow-deep: #f5b301;
+  --orange: #ff7a00;
+  --red: #ec2a17;
+  --ink: #0f0f0f;
+  --ink-soft: #1b1b1b;
+  --paper: #f7f6f2;
+  --muted: #6b6b6b;
+}
+
+@theme inline {
+  --color-yellow: var(--yellow);
+  --color-yellow-deep: var(--yellow-deep);
+  --color-orange: var(--orange);
+  --color-red: var(--red);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-serif: var(--font-serif);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.02em;
+}
+
+.display {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+}
+
+/* Caution tape */
+.tape {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 6px,
+      var(--ink) 6px 9px
+    ) left / 28px 100% no-repeat,
+    var(--yellow);
+  color: var(--ink);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-speed, 30s) linear infinite;
+}
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.spin-slow {
+  animation: spin-slow 18s linear infinite;
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .spin-slow { animation: none; }
+}
